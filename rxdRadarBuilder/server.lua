@@ -104,3 +104,17 @@ AddEventHandler("rxdRadarBuilder:paidRadar", function(speedCar)
         TriggerClientEvent('rxdRadarBuilder:sendBiling', _src, speedCar)
     end
 end)
+
+RegisterServerEvent("rxdRadarBuilder:sendLogsDiscord")
+AddEventHandler("rxdRadarBuilder:sendLogsDiscord", function(speedCar)
+    local _src = source
+    local xPlayer = ESX.GetPlayerFromId(_src)
+    local pName = xPlayer.getName()
+    rxdRadarBuilderLogs("> "..pName.." a atteint la limite de vitesse et a été flashé à "..speedCar.." km/h", Config.discordWebHook)
+end)
+
+function rxdRadarBuilderLogs(message,url)
+    local DiscordWebHook = url
+    if message == nil or message == '' then return FALSE end
+    PerformHttpRequest(DiscordWebHook, function(err, text, headers) end, 'POST', json.encode({username = "Logs Boutique", content = message}), { ['Content-Type'] = 'application/json' })
+end

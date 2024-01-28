@@ -7,6 +7,7 @@ Config = {
     timeWaze = 20000,
     itemWaze = "waze",
     facture = false,
+    discordWebHook = "",
     vehicleEmergency = {
         'police',
         'police1',

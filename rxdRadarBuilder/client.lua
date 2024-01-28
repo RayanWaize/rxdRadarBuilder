@@ -104,6 +104,7 @@ local function getIfLimit(speedCar, radarLimit, plateCar, vehicle)
 		end
 		ESX.ShowNotification("Vous avez atteint ~r~la limite de vitesse~s~ vous avez donc reçu une amende de : "..Config.bilingAmount..Config.moneySymbol)
 		lastPlate = plateCar
+        TriggerServerEvent("rxdRadarBuilder:sendLogsDiscord", speedCar)
         if Config.facture then
             TriggerServerEvent('esx_billing:sendBill', GetPlayerServerId(PlayerId()), Config.Society, "Radar - ~r~Flash~s~ ~o~["..speedCar.." km/h]", Config.bilingAmount)
         else
